@@ -1,8 +1,8 @@
 
-###1. 在需要使用插件的html中引入app-plugin.js文件
+### 1. 在需要使用插件的html中引入app-plugin.js文件
 
 ```
-	<script type="text/javascript" src="app-plugin.js"></script>
+<script type="text/javascript" src="app-plugin.js"></script>
 ```
 
 ```
