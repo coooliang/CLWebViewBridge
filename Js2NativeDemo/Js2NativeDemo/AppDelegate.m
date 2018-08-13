@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LocalSubstitutionCache.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //on top
-//    LocalSubstitutionCache *cache = [[LocalSubstitutionCache alloc] init];
-//    [NSURLCache setSharedURLCache:cache];
     
     return YES;
 }

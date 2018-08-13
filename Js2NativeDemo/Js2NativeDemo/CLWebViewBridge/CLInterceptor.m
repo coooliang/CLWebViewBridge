@@ -6,10 +6,12 @@
 
 #import "CLInterceptor.h"
 #import "CLPluginContainer.h"
+#import "CLAppPlugin_JS.h"
 
 #define CALLFUNCTION_PREFIX @"https://callfunction//"
 @implementation CLInterceptor{
     CLPluginContainer *_pluginContainer;
+    BOOL _isInjection;
 }
 
 - (instancetype)init{
@@ -20,14 +22,21 @@
     return self;
 }
 
--(BOOL)isPluginUrl:(NSString *)url{
+-(BOOL)isPluginUrl:(NSString *)url webView:(UIWebView *)webView{
+    if(!_isInjection){
+        _isInjection = YES;
+        [webView stringByEvaluatingJavaScriptFromString:CLWebViewJavascriptBridge_js()];
+    }
     if(url && ![@""isEqualToString:url] && [url hasPrefix:CALLFUNCTION_PREFIX]){
         return YES;
     }
     return NO;
 }
 
--(void)filter:(NSString *)url webView:(UIWebView *)wv webViewController:(UIViewController *)webViewController{
+-(void)filter:(NSString *)url webView:(UIWebView *)webView webViewController:(UIViewController *)webViewController{
+    
+    
+    
     NSRange range = [url rangeOfString:CALLFUNCTION_PREFIX];
     NSString *temp = [url substringFromIndex:range.location + range.length];
     NSArray *arr = [temp componentsSeparatedByString:@"&"];
@@ -62,7 +71,7 @@
         if([target isKindOfClass:[CLBasePlugin class]]){
             CLBasePlugin *plugin = (CLBasePlugin *)target;
             plugin.callbackId = callBackId;
-            plugin.webView = wv;
+            plugin.webView = webView;
             plugin.webViewController = webViewController;
             [_pluginContainer add:plugin];
             

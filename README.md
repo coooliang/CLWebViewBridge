@@ -1,41 +1,30 @@
 
-### 1. 在需要使用插件的html中引入app-plugin.js文件
-
-```
-<script type="text/javascript" src="app-plugin.js"></script>
-```
-
-```
-PS:可以使用其它方式让html引入此js文件
-1.页面引入空的 app-plugin.js
-2.使用 LocalSubstitutionCache 拦截所有请求的，并替换该文件
-```
-### 2. 在app-plugin.js中创建一个名为InfoPlugin的插件
+### 1. 在CLAppPlugin_JS.m中创建一个名为InfoPlugin的插件
 
 ```
 function InfoPlugin() {};
 
 InfoPlugin.prototype.hello = function (successCallback, failureCallback, jsonString) {
 	js2native.exec(successCallback, failureCallback, "InfoPlugin", "hello", jsonString);
-}
+};//需要分号结尾
 InfoPlugin.prototype.world = function (successCallback, failureCallback, jsonString) {
 	js2native.exec(successCallback, failureCallback, "InfoPlugin", "world", jsonString);
-}
+};
 InfoPlugin.prototype.keyboard = function (successCallback, failureCallback, jsonString) {
 	js2native.exec(successCallback, failureCallback, "InfoPlugin", "keyboard", jsonString);
-}
+};
 window.plugins.infoPlugin = new InfoPlugin();
 
 //JS插件中的类名与方法名需要与OC中的类名方法名保持一致
 function OtherPlugin(){}
 OtherPlugin.prototype.methodName = function (successCallback, failureCallback, jsonString) {
 	js2native.exec(successCallback, failureCallback, "ClassName", "methodName", jsonString);
-}
+};
 ...
 window.plugins.otherPlugin = new OtherPlugin();
 
 ```
-### 3. OC中添加对应的plugin类,需要继承CLBasePlugin
+### 2. OC中添加对应的plugin类,需要继承CLBasePlugin
 
 ```
 //JS插件中的类名与方法名需要与OC中的类名方法名保持一致
@@ -54,13 +43,13 @@ window.plugins.otherPlugin = new OtherPlugin();
 
 ```
 
-### 4.拦截WebView的url
+### 3.拦截WebView的url
 
 ```
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *url = request.URL.absoluteString;
     NSLog(@"url : %@",url);
-    if([_interceptor isPluginUrl:url]){
+    if([_interceptor isPluginUrl:url webView:webView]){
         [_interceptor filter:url webView:webView webViewController:self];
         return NO;
     }
@@ -69,7 +58,7 @@ window.plugins.otherPlugin = new OtherPlugin();
 
 ```
 
-### 5.html中如何调用插件
+### 4.html中如何调用插件
 
 ```
 
@@ -90,7 +79,7 @@ function keyboard(){
 
 ```
 
-### 6. 设计缺陷
+### 5. 设计缺陷
 
 ```
 

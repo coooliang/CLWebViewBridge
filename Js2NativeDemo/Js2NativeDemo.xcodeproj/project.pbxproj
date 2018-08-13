@@ -19,7 +19,7 @@
 		9071DFF320FDCB400020E8DF /* CLInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071DFF220FDCB400020E8DF /* CLInterceptor.m */; };
 		9071E07A210076660020E8DF /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 9071E078210076660020E8DF /* index.html */; };
 		9071E081210569D20020E8DF /* CLPluginContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071E080210569D20020E8DF /* CLPluginContainer.m */; };
-		9071E08B2106D4C40020E8DF /* app-plugin.js in Resources */ = {isa = PBXBuildFile; fileRef = 9071E08A2106D4C40020E8DF /* app-plugin.js */; };
+		9071E17C212178210020E8DF /* CLAppPlugin_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071E17B212178200020E8DF /* CLAppPlugin_JS.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +44,8 @@
 		9071E078210076660020E8DF /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		9071E07F210569D20020E8DF /* CLPluginContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLPluginContainer.h; sourceTree = "<group>"; };
 		9071E080210569D20020E8DF /* CLPluginContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLPluginContainer.m; sourceTree = "<group>"; };
-		9071E08A2106D4C40020E8DF /* app-plugin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "app-plugin.js"; sourceTree = "<group>"; };
+		9071E17A212178200020E8DF /* CLAppPlugin_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAppPlugin_JS.h; sourceTree = "<group>"; };
+		9071E17B212178200020E8DF /* CLAppPlugin_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAppPlugin_JS.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,8 @@
 		9071DFDA20FDCA120020E8DF /* CLWebViewBridge */ = {
 			isa = PBXGroup;
 			children = (
+				9071E17A212178200020E8DF /* CLAppPlugin_JS.h */,
+				9071E17B212178200020E8DF /* CLAppPlugin_JS.m */,
 				9071DFF120FDCB400020E8DF /* CLInterceptor.h */,
 				9071DFF220FDCB400020E8DF /* CLInterceptor.m */,
 				9071E07F210569D20020E8DF /* CLPluginContainer.h */,
@@ -108,7 +111,6 @@
 		9071DFE820FDCA1B0020E8DF /* test */ = {
 			isa = PBXGroup;
 			children = (
-				9071E08A2106D4C40020E8DF /* app-plugin.js */,
 				9071E078210076660020E8DF /* index.html */,
 				9071DFEB20FDCA1B0020E8DF /* InfoPlugin.h */,
 				9071DFE920FDCA1B0020E8DF /* InfoPlugin.m */,
@@ -178,7 +180,6 @@
 				9071E07A210076660020E8DF /* index.html in Resources */,
 				9071DFD120FDC9A90020E8DF /* LaunchScreen.storyboard in Resources */,
 				9071DFCE20FDC9A90020E8DF /* Assets.xcassets in Resources */,
-				9071E08B2106D4C40020E8DF /* app-plugin.js in Resources */,
 				9071DFCC20FDC9A70020E8DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +193,7 @@
 			files = (
 				9071DFF320FDCB400020E8DF /* CLInterceptor.m in Sources */,
 				9071DFC920FDC9A70020E8DF /* ViewController.m in Sources */,
+				9071E17C212178210020E8DF /* CLAppPlugin_JS.m in Sources */,
 				9071DFD420FDC9A90020E8DF /* main.m in Sources */,
 				9071DFEF20FDCA1B0020E8DF /* WebViewController.m in Sources */,
 				9071E081210569D20020E8DF /* CLPluginContainer.m in Sources */,

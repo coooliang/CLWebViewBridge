@@ -38,7 +38,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *url = request.URL.absoluteString;
     NSLog(@"url : %@",url);
-    if([_interceptor isPluginUrl:url]){
+    if([_interceptor isPluginUrl:url webView:webView]){
         [_interceptor filter:url webView:webView webViewController:self];
         return NO;
     }
