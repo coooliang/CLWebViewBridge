@@ -11,7 +11,9 @@
 NSString * CLWebViewJavascriptBridge_js() {
     #define __wvjb_js_func__(x) #x
     static NSString * preprocessorJSCode = @__wvjb_js_func__(
-    
+                                                             
+        var app_plugin_is_injection = true;
+
         var app_plugin_uuid_count = 1;
 
         function app_plugin_uuid() {

@@ -5,11 +5,15 @@
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <meta name="format-detection" content="telephone=no"/>
         <title>demo</title>
-
+                
         <script type="text/javascript">
             function hello(){
                 var param = '{"name":"lion","value":"666"}';
                 window.plugins.infoPlugin.hello(function(data){alert(data)},null,param);
+            }
+        
+            function hello2(){
+                window.plugins.infoPlugin.hello();
             }
         
             function world(){
@@ -26,6 +30,7 @@
     <body>
         index.html
         <button onclick="hello()">hello</button>
+        <button onclick="hello2()">hello2</button>
         <button onclick="world()">world</button>
         <button onclick="keyboard()">keyboard</button>
         

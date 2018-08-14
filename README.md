@@ -79,12 +79,14 @@ function keyboard(){
 
 ```
 
+
 ### 5. 设计缺陷
 
 ```
+//1.所有页面自动注入插件，即使您不需要。
 
-//因为业务多变，所以常常我们使用插件时不是必须使用成功和失败回调;
-//此情况下需要手动释放内存，需要调用从CLBasePlugin继承的finish方法，例如：
+//2.因为业务多变，所以常常我们使用插件时不是必须使用成功和失败回调;
+//此情况下需要手动释放内存，需要调用从CLBasePlugin继承的finish方法。例如：
 -(void)world:(NSString *)argument{
     NSLog(@"argument = %@",argument);
     [self finish];//没有调用成功或者失败回调时，需要调用finish函数

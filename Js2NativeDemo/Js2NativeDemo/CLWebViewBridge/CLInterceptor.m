@@ -23,10 +23,13 @@
 }
 
 -(BOOL)isPluginUrl:(NSString *)url webView:(UIWebView *)webView{
-    if(!_isInjection){
-        _isInjection = YES;
+    NSString *injectionJs = [webView stringByEvaluatingJavaScriptFromString:@"typeof(app_plugin_is_injection)"];
+    BOOL isUndefined = [@"undefined"isEqualToString:injectionJs];
+    if(isUndefined){
+        NSLog(@"injection js...");
         [webView stringByEvaluatingJavaScriptFromString:CLWebViewJavascriptBridge_js()];
     }
+
     if(url && ![@""isEqualToString:url] && [url hasPrefix:CALLFUNCTION_PREFIX]){
         return YES;
     }
