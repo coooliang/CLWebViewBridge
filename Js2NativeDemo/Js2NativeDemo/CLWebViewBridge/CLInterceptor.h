@@ -9,8 +9,8 @@
 
 @interface CLInterceptor : NSObject
 
--(BOOL)isPluginUrl:(NSString *)url webView:(UIWebView *)webView;
+-(BOOL)isPluginUrl:(NSString *)url webView:(id)webView;
     
--(void)filter:(NSString *)url webView:(UIWebView *)webView webViewController:(UIViewController *)webViewController;
+-(void)filter:(NSString *)url webView:(id)webView webViewController:(UIViewController *)webViewController;
 
 @end

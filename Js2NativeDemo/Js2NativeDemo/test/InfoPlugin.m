@@ -47,8 +47,8 @@
 }
 -(void)click{
     NSLog(@"click");
-    NSString *js = @"document.getElementById('test').value = '666'";
-    [self.webView stringByEvaluatingJavaScriptFromString:js];
+    NSString *js = @"document.getElementById('test').value = '666';";
+    [self eval:js];
 }
 -(void)close{
     [_keyboard removeFromSuperview];

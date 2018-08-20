@@ -8,6 +8,12 @@
 #import "CLPluginContainer.h"
 #import "CLAppPlugin_JS.h"
 
+#import <Availability.h>
+
+#ifdef __IPHONE_8_0
+#import <WebKit/WebKit.h>
+#endif
+
 #define CALLFUNCTION_PREFIX @"https://callfunction//"
 @implementation CLInterceptor{
     CLPluginContainer *_pluginContainer;
@@ -22,21 +28,36 @@
     return self;
 }
 
--(BOOL)isPluginUrl:(NSString *)url webView:(UIWebView *)webView{
-    NSString *injectionJs = [webView stringByEvaluatingJavaScriptFromString:@"typeof(app_plugin_is_injection)"];
-    BOOL isUndefined = [@"undefined"isEqualToString:injectionJs];
-    if(isUndefined){
-        NSLog(@"injection js...");
-        [webView stringByEvaluatingJavaScriptFromString:CLWebViewJavascriptBridge_js()];
+-(BOOL)isPluginUrl:(NSString *)url webView:(id)webView{
+    if ([webView isKindOfClass:[UIWebView class]]) {
+        UIWebView *wv = (UIWebView *)webView;
+        NSString *injectionJs = [wv stringByEvaluatingJavaScriptFromString:@"typeof(app_plugin_is_injection)"];
+        BOOL isUndefined = [@"undefined"isEqualToString:injectionJs];
+        if(isUndefined){
+            NSLog(@"injection js...");
+            [wv stringByEvaluatingJavaScriptFromString:CLWebViewJavascriptBridge_js()];
+        }
+    }else if(@available(iOS 8.0,*)){
+        if ([webView isKindOfClass:[WKWebView class]]) {
+            WKWebView *wk = webView;
+            [wk evaluateJavaScript:@"typeof(app_plugin_is_injection)" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                if (!error && result) {
+                    BOOL isUndefined = [@"undefined"isEqualToString:result];
+                    if(isUndefined){
+                        NSLog(@"injection js...");
+                        [wk evaluateJavaScript:CLWebViewJavascriptBridge_js() completionHandler:nil];
+                    }
+                }
+            }];
+        }
     }
-
     if(url && ![@""isEqualToString:url] && [url hasPrefix:CALLFUNCTION_PREFIX]){
         return YES;
     }
     return NO;
 }
 
--(void)filter:(NSString *)url webView:(UIWebView *)webView webViewController:(UIViewController *)webViewController{
+-(void)filter:(NSString *)url webView:(id)webView webViewController:(UIViewController *)webViewController{
     
     
     

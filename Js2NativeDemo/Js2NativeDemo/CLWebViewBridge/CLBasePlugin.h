@@ -10,9 +10,11 @@
 @interface CLBasePlugin : NSObject
 
 @property(nonatomic,weak)UIViewController *webViewController;
-@property(nonatomic,strong)UIWebView *webView;
+@property(nonatomic,strong)id webView;
 @property(nonatomic,strong)NSString *callbackId;
 @property(nonatomic,strong)UIWindow *keyWindow;
+
+-(void)eval:(NSString *)js;
 
 -(void)toSuccessCallback;
 

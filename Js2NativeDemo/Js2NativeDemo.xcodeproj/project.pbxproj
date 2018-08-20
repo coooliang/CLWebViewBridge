@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		901DB348212A6DED00C8D4E4 /* WKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901DB347212A6DED00C8D4E4 /* WKWebViewController.m */; };
+		901DB34A212A95B800C8D4E4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 901DB349212A95B800C8D4E4 /* Default-568h@2x.png */; };
+		901DB34D212A96DB00C8D4E4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901DB34C212A96DB00C8D4E4 /* WebKit.framework */; };
 		9071DFC620FDC9A70020E8DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071DFC520FDC9A70020E8DF /* AppDelegate.m */; };
 		9071DFC920FDC9A70020E8DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071DFC820FDC9A70020E8DF /* ViewController.m */; };
-		9071DFCC20FDC9A70020E8DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9071DFCA20FDC9A70020E8DF /* Main.storyboard */; };
 		9071DFCE20FDC9A90020E8DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9071DFCD20FDC9A90020E8DF /* Assets.xcassets */; };
 		9071DFD120FDC9A90020E8DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9071DFCF20FDC9A90020E8DF /* LaunchScreen.storyboard */; };
 		9071DFD420FDC9A90020E8DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071DFD320FDC9A90020E8DF /* main.m */; };
@@ -23,12 +25,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		901DB346212A6DED00C8D4E4 /* WKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebViewController.h; sourceTree = "<group>"; };
+		901DB347212A6DED00C8D4E4 /* WKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKWebViewController.m; sourceTree = "<group>"; };
+		901DB349212A95B800C8D4E4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		901DB34C212A96DB00C8D4E4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9071DFC120FDC9A70020E8DF /* Js2NativeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Js2NativeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9071DFC420FDC9A70020E8DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9071DFC520FDC9A70020E8DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9071DFC720FDC9A70020E8DF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9071DFC820FDC9A70020E8DF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9071DFCB20FDC9A70020E8DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9071DFCD20FDC9A90020E8DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9071DFD020FDC9A90020E8DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9071DFD220FDC9A90020E8DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,17 +58,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				901DB34D212A96DB00C8D4E4 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		901DB34B212A96DB00C8D4E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				901DB34C212A96DB00C8D4E4 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9071DFB820FDC9A70020E8DF = {
 			isa = PBXGroup;
 			children = (
+				901DB349212A95B800C8D4E4 /* Default-568h@2x.png */,
 				9071DFC320FDC9A70020E8DF /* Js2NativeDemo */,
 				9071DFC220FDC9A70020E8DF /* Products */,
+				901DB34B212A96DB00C8D4E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,7 +100,6 @@
 				9071DFC520FDC9A70020E8DF /* AppDelegate.m */,
 				9071DFC720FDC9A70020E8DF /* ViewController.h */,
 				9071DFC820FDC9A70020E8DF /* ViewController.m */,
-				9071DFCA20FDC9A70020E8DF /* Main.storyboard */,
 				9071DFCF20FDC9A90020E8DF /* LaunchScreen.storyboard */,
 				9071DFD320FDC9A90020E8DF /* main.m */,
 				9071DFD220FDC9A90020E8DF /* Info.plist */,
@@ -116,6 +131,8 @@
 				9071DFE920FDCA1B0020E8DF /* InfoPlugin.m */,
 				9071DFEC20FDCA1B0020E8DF /* WebViewController.h */,
 				9071DFEA20FDCA1B0020E8DF /* WebViewController.m */,
+				901DB346212A6DED00C8D4E4 /* WKWebViewController.h */,
+				901DB347212A6DED00C8D4E4 /* WKWebViewController.m */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -180,7 +197,7 @@
 				9071E07A210076660020E8DF /* index.html in Resources */,
 				9071DFD120FDC9A90020E8DF /* LaunchScreen.storyboard in Resources */,
 				9071DFCE20FDC9A90020E8DF /* Assets.xcassets in Resources */,
-				9071DFCC20FDC9A70020E8DF /* Main.storyboard in Resources */,
+				901DB34A212A95B800C8D4E4 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +213,7 @@
 				9071E17C212178210020E8DF /* CLAppPlugin_JS.m in Sources */,
 				9071DFD420FDC9A90020E8DF /* main.m in Sources */,
 				9071DFEF20FDCA1B0020E8DF /* WebViewController.m in Sources */,
+				901DB348212A6DED00C8D4E4 /* WKWebViewController.m in Sources */,
 				9071E081210569D20020E8DF /* CLPluginContainer.m in Sources */,
 				9071DFEE20FDCA1B0020E8DF /* InfoPlugin.m in Sources */,
 				9071DFE720FDCA120020E8DF /* CLBasePlugin.m in Sources */,
@@ -206,14 +224,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9071DFCA20FDC9A70020E8DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9071DFCB20FDC9A70020E8DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9071DFCF20FDC9A90020E8DF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -276,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -328,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -6,6 +6,10 @@
 
 #import "CLBasePlugin.h"
 
+#ifdef __IPHONE_8_0
+#import <WebKit/WebKit.h>
+#endif
+
 @implementation CLBasePlugin
 
 - (id)init{
@@ -16,6 +20,19 @@
     return self;
 }
 
+-(void)eval:(NSString *)js{
+    if (_webView) {
+        if([_webView isKindOfClass:[UIWebView class]]){
+            UIWebView *wv = (UIWebView *)_webView;
+            [wv stringByEvaluatingJavaScriptFromString:js];
+        }else if(@available(iOS 8.0,*)){
+            if ([_webView isKindOfClass:[WKWebView class]]) {
+                WKWebView *wk = (WKWebView *)_webView;
+                [wk evaluateJavaScript:js completionHandler:nil];
+            }
+        }
+    }
+}
 /**
  *  执行成功回调函数
  *
@@ -60,10 +77,20 @@
         }else{
             js = [NSString stringWithFormat:@"app_plugin_execute_callback('%@')",key];
         }
-        [_webView stringByEvaluatingJavaScriptFromString:js];
+        
+        if([_webView isKindOfClass:[UIWebView class]]){
+            UIWebView *wv = (UIWebView *)_webView;
+            [wv stringByEvaluatingJavaScriptFromString:js];
+            [self finish];
+        }else if(@available(iOS 8.0,*)){
+            if ([_webView isKindOfClass:[WKWebView class]]) {
+                WKWebView *wk = (WKWebView *)_webView;
+                [wk evaluateJavaScript:js completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                    [self finish];
+                }];
+            }
+        }
     }
-    
-    [self finish];
 }
 
 -(void)finish{

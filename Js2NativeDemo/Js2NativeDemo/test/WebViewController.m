@@ -7,8 +7,6 @@
 //
 
 #import "WebViewController.h"
-#import "CLAppPlugin_JS.h"
-
 #import "CLInterceptor.h"
 
 @interface WebViewController ()<UIWebViewDelegate>
@@ -27,7 +25,7 @@
     
     //test
     UIWebView *webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"index.html" ofType:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
     webView.delegate = self;
     [self.view addSubview:webView];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20]];
