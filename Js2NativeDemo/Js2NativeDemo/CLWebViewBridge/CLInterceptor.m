@@ -10,9 +10,7 @@
 
 #import <Availability.h>
 
-#ifdef __IPHONE_8_0
 #import <WebKit/WebKit.h>
-#endif
 
 #define CALLFUNCTION_PREFIX @"https://callfunction//"
 @implementation CLInterceptor{
