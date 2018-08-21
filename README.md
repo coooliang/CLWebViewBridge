@@ -56,6 +56,21 @@ window.plugins.otherPlugin = new OtherPlugin();
     return YES;
 }
 
+//WKWebView
+// 在发送请求之前，决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSString *url = navigationAction.request.URL.absoluteString;
+    NSLog(@"url: %@",url);
+    
+    if([_interceptor isPluginUrl:url webView:webView]){
+        [_interceptor filter:url webView:webView webViewController:self];
+        //不允许跳转
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    //允许跳转
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
 ```
 
 ### 4.html中如何调用插件
