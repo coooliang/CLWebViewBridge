@@ -52,9 +52,7 @@ NSString * CLWebViewJavascriptBridge_js() {
                 iframe = null;
             }, 0);
         }
-        if (!window.plugins) {
-            window.plugins = {};
-        }
+                                                             
         if (!window.js2native) {
             window.js2native = {
                 exec: function (successCallback, failureCallback, className, methodName, jsonString) {
@@ -70,9 +68,9 @@ NSString * CLWebViewJavascriptBridge_js() {
                 }
             };
         }
-
-
-        // ----------------------------  plugins  ----------------------------
+         
+        /* ----------------------------  plugins  ----------------------------
+        if (!window.plugins) {window.plugins = {};}
         function InfoPlugin() {};
         InfoPlugin.prototype.hello = function (successCallback, failureCallback, jsonString) {
             js2native.exec(successCallback, failureCallback, "InfoPlugin", "hello", jsonString);
@@ -84,7 +82,7 @@ NSString * CLWebViewJavascriptBridge_js() {
             js2native.exec(successCallback, failureCallback, "InfoPlugin", "keyboard", jsonString);
         };
         window.plugins.infoPlugin = new InfoPlugin();
-                                                             
+        */
     
     ); // END preprocessorJSCode
     

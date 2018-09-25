@@ -22,6 +22,7 @@
 		9071E07A210076660020E8DF /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 9071E078210076660020E8DF /* index.html */; };
 		9071E081210569D20020E8DF /* CLPluginContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071E080210569D20020E8DF /* CLPluginContainer.m */; };
 		9071E17C212178210020E8DF /* CLAppPlugin_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 9071E17B212178200020E8DF /* CLAppPlugin_JS.m */; };
+		9097B9432159D1400092FC2E /* CLPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9097B9422159D1400092FC2E /* CLPluginManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		9071E080210569D20020E8DF /* CLPluginContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLPluginContainer.m; sourceTree = "<group>"; };
 		9071E17A212178200020E8DF /* CLAppPlugin_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAppPlugin_JS.h; sourceTree = "<group>"; };
 		9071E17B212178200020E8DF /* CLAppPlugin_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAppPlugin_JS.m; sourceTree = "<group>"; };
+		9097B9412159D1400092FC2E /* CLPluginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLPluginManager.h; sourceTree = "<group>"; };
+		9097B9422159D1400092FC2E /* CLPluginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLPluginManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				9071E080210569D20020E8DF /* CLPluginContainer.m */,
 				9071DFE120FDCA120020E8DF /* CLBasePlugin.h */,
 				9071DFE320FDCA120020E8DF /* CLBasePlugin.m */,
+				9097B9412159D1400092FC2E /* CLPluginManager.h */,
+				9097B9422159D1400092FC2E /* CLPluginManager.m */,
 			);
 			path = CLWebViewBridge;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				9071E17C212178210020E8DF /* CLAppPlugin_JS.m in Sources */,
 				9071DFD420FDC9A90020E8DF /* main.m in Sources */,
 				9071DFEF20FDCA1B0020E8DF /* WebViewController.m in Sources */,
+				9097B9432159D1400092FC2E /* CLPluginManager.m in Sources */,
 				901DB348212A6DED00C8D4E4 /* WKWebViewController.m in Sources */,
 				9071E081210569D20020E8DF /* CLPluginContainer.m in Sources */,
 				9071DFEE20FDCA1B0020E8DF /* InfoPlugin.m in Sources */,

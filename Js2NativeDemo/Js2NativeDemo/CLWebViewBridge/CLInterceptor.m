@@ -7,15 +7,16 @@
 #import "CLInterceptor.h"
 #import "CLPluginContainer.h"
 #import "CLAppPlugin_JS.h"
-
 #import <Availability.h>
-
 #import <WebKit/WebKit.h>
+#import "CLPluginManager.h"
 
 #define CALLFUNCTION_PREFIX @"https://callfunction//"
 @implementation CLInterceptor{
     CLPluginContainer *_pluginContainer;
     BOOL _isInjection;
+    
+    NSString *_injectionJS;
 }
 
 - (instancetype)init{
@@ -33,7 +34,7 @@
         BOOL isUndefined = [@"undefined"isEqualToString:injectionJs];
         if(isUndefined){
             NSLog(@"injection js...");
-            [wv stringByEvaluatingJavaScriptFromString:CLWebViewJavascriptBridge_js()];
+            [wv stringByEvaluatingJavaScriptFromString:[self injectionJS]];
         }
     }else if(@available(iOS 8.0,*)){
         if ([webView isKindOfClass:[WKWebView class]]) {
@@ -43,7 +44,7 @@
                     BOOL isUndefined = [@"undefined"isEqualToString:result];
                     if(isUndefined){
                         NSLog(@"injection js...");
-                        [wk evaluateJavaScript:CLWebViewJavascriptBridge_js() completionHandler:nil];
+                        [wk evaluateJavaScript:[self injectionJS] completionHandler:nil];
                     }
                 }
             }];
@@ -56,9 +57,6 @@
 }
 
 -(void)filter:(NSString *)url webView:(id)webView webViewController:(UIViewController *)webViewController{
-    
-    
-    
     NSRange range = [url rangeOfString:CALLFUNCTION_PREFIX];
     NSString *temp = [url substringFromIndex:range.location + range.length];
     NSArray *arr = [temp componentsSeparatedByString:@"&"];
@@ -112,6 +110,12 @@
         return argument;
     }
 }
-    
+
+-(NSString *)injectionJS{
+    if (_injectionJS == nil) {
+        _injectionJS = [NSString stringWithFormat:@"%@%@",CLWebViewJavascriptBridge_js(),[[CLPluginManager sharedInstance]createJS]];
+    }
+    return _injectionJS;
+}
 @end
 

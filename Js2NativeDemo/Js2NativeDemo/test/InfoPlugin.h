@@ -9,11 +9,5 @@
 #import "CLBasePlugin.h"
 
 @interface InfoPlugin : CLBasePlugin
-
--(void)hello:(NSString *)argument;
-
--(void)world:(NSString *)argument;
-    
--(void)keyboard:(NSString *)argument;
     
 @end
