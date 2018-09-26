@@ -123,4 +123,9 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+
+- (void)dealloc{
+    NSLog(@"%@ dealloc",[self class]);
+}
+
 @end

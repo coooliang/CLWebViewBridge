@@ -114,16 +114,16 @@
 		9071DFDA20FDCA120020E8DF /* CLWebViewBridge */ = {
 			isa = PBXGroup;
 			children = (
-				9071E17A212178200020E8DF /* CLAppPlugin_JS.h */,
-				9071E17B212178200020E8DF /* CLAppPlugin_JS.m */,
+				9071DFE120FDCA120020E8DF /* CLBasePlugin.h */,
+				9071DFE320FDCA120020E8DF /* CLBasePlugin.m */,
 				9071DFF120FDCB400020E8DF /* CLInterceptor.h */,
 				9071DFF220FDCB400020E8DF /* CLInterceptor.m */,
 				9071E07F210569D20020E8DF /* CLPluginContainer.h */,
 				9071E080210569D20020E8DF /* CLPluginContainer.m */,
-				9071DFE120FDCA120020E8DF /* CLBasePlugin.h */,
-				9071DFE320FDCA120020E8DF /* CLBasePlugin.m */,
 				9097B9412159D1400092FC2E /* CLPluginManager.h */,
 				9097B9422159D1400092FC2E /* CLPluginManager.m */,
+				9071E17A212178200020E8DF /* CLAppPlugin_JS.h */,
+				9071E17B212178200020E8DF /* CLAppPlugin_JS.m */,
 			);
 			path = CLWebViewBridge;
 			sourceTree = "<group>";

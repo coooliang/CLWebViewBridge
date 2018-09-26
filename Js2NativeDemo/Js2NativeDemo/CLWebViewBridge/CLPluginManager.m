@@ -9,8 +9,11 @@
 #import "CLPluginManager.h"
 #import <objc/runtime.h>
 #import "CLBasePlugin.h"
+#import "CLAppPlugin_JS.h"
 
-@implementation CLPluginManager
+@implementation CLPluginManager{
+    NSString *_injectionJS;
+}
 
 //单例
 + (id)sharedInstance{
@@ -20,6 +23,13 @@
         instance = [[self alloc] init];
     });
     return instance;
+}
+
+-(NSString *)injectionJS{
+    if (_injectionJS == nil) {
+        _injectionJS = [NSString stringWithFormat:@"%@%@",CLWebViewJavascriptBridge_js(),[self createJS]];
+    }
+    return _injectionJS;
 }
 
 /**
@@ -113,6 +123,10 @@
         return [NSString stringWithFormat:@"%@%@",[[word lowercaseString]substringToIndex:1],[word substringFromIndex:1]];
     }
     return word;
+}
+
+- (void)dealloc{
+    NSLog(@"%@ dealloc",[self class]);
 }
 
 @end

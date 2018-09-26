@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (id)sharedInstance;
 
--(NSString *)createJS;
+-(NSString *)injectionJS;
 
 @end
 

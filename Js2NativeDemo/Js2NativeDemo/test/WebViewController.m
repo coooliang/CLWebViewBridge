@@ -52,8 +52,8 @@
 }
 
 #pragma mark - 
--(void)hello{
-    NSLog(@"hello");
+- (void)dealloc{
+    NSLog(@"%@ dealloc",[self class]);
 }
 
 @end

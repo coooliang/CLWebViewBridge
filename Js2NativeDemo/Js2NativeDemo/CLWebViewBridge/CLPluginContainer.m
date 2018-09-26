@@ -52,5 +52,8 @@
         _container = nil;
     }
     [[NSNotificationCenter defaultCenter]removeObserver:self name:CLPluginContainer_Remove object:nil];
+    
+    NSLog(@"%@ dealloc",[self class]);
 }
+
 @end

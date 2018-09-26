@@ -6,7 +6,6 @@
 
 #import "CLInterceptor.h"
 #import "CLPluginContainer.h"
-#import "CLAppPlugin_JS.h"
 #import <Availability.h>
 #import <WebKit/WebKit.h>
 #import "CLPluginManager.h"
@@ -14,9 +13,7 @@
 #define CALLFUNCTION_PREFIX @"https://callfunction//"
 @implementation CLInterceptor{
     CLPluginContainer *_pluginContainer;
-    BOOL _isInjection;
-    
-    NSString *_injectionJS;
+
 }
 
 - (instancetype)init{
@@ -30,25 +27,25 @@
 -(BOOL)isPluginUrl:(NSString *)url webView:(id)webView{
     if ([webView isKindOfClass:[UIWebView class]]) {
         UIWebView *wv = (UIWebView *)webView;
-        NSString *injectionJs = [wv stringByEvaluatingJavaScriptFromString:@"typeof(app_plugin_is_injection)"];
-        BOOL isUndefined = [@"undefined"isEqualToString:injectionJs];
+        NSString *isInjection = [wv stringByEvaluatingJavaScriptFromString:@"typeof(app_plugin_is_injection)"];
+        BOOL isUndefined = [@"undefined"isEqualToString:isInjection];
         if(isUndefined){
             NSLog(@"injection js...");
-            [wv stringByEvaluatingJavaScriptFromString:[self injectionJS]];
+            NSString *injectionJS = [[CLPluginManager sharedInstance]injectionJS];
+            [wv stringByEvaluatingJavaScriptFromString:injectionJS];
         }
-    }else if(@available(iOS 8.0,*)){
-        if ([webView isKindOfClass:[WKWebView class]]) {
-            WKWebView *wk = webView;
-            [wk evaluateJavaScript:@"typeof(app_plugin_is_injection)" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                if (!error && result) {
-                    BOOL isUndefined = [@"undefined"isEqualToString:result];
-                    if(isUndefined){
-                        NSLog(@"injection js...");
-                        [wk evaluateJavaScript:[self injectionJS] completionHandler:nil];
-                    }
+    }else if ([webView isKindOfClass:[WKWebView class]]) {
+        WKWebView *wk = (WKWebView *)webView;
+        [wk evaluateJavaScript:@"typeof(app_plugin_is_injection)" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            if (!error && result) {
+                BOOL isUndefined = [@"undefined"isEqualToString:result];
+                if(isUndefined){
+                    NSLog(@"injection js...");
+                    NSString *injectionJS = [[CLPluginManager sharedInstance]injectionJS];
+                    [wk evaluateJavaScript:injectionJS completionHandler:nil];
                 }
-            }];
-        }
+            }
+        }];
     }
     if(url && ![@""isEqualToString:url] && [url hasPrefix:CALLFUNCTION_PREFIX]){
         return YES;
@@ -61,27 +58,19 @@
     NSString *temp = [url substringFromIndex:range.location + range.length];
     NSArray *arr = [temp componentsSeparatedByString:@"&"];
     
-    NSString *callBackId = @"";
-    NSString *className = @"";
-    NSString *methodName = @"";
-    
-    
-    if(arr != nil && arr.count > 3){
-        NSString *tt = [arr objectAtIndex:0];
-        NSArray *tempArr = [tt componentsSeparatedByString:@"="];
-        callBackId = [tempArr objectAtIndex:1];
+    if(arr != nil){
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:arr.count];
+        for (NSString *param in arr) {
+            NSArray *temp = [param componentsSeparatedByString:@"="];
+            if (temp && temp.count > 0) {
+                [params setObject:temp[1] forKey:temp[0]];
+            }
+        }
         
-        tt = [arr objectAtIndex:1];
-        tempArr = [tt componentsSeparatedByString:@"="];
-        className = [tempArr objectAtIndex:1];
-        
-        tt = [arr objectAtIndex:2];
-        tempArr = [tt componentsSeparatedByString:@"="];
-        methodName = [tempArr objectAtIndex:1];
-        
-        tt = [arr objectAtIndex:3];
-        tempArr = [tt componentsSeparatedByString:@"="];
-        NSString *jsonString = [tempArr objectAtIndex:1];
+        NSString *callBackId = [params objectForKey:@"callbackId"];
+        NSString *className = [params objectForKey:@"className"];;
+        NSString *methodName = [params objectForKey:@"method"];
+        NSString *jsonString = [params objectForKey:@"param"];
         jsonString = [jsonString stringByRemovingPercentEncoding];
         jsonString = [self filterArgument:jsonString];
         
@@ -111,11 +100,9 @@
     }
 }
 
--(NSString *)injectionJS{
-    if (_injectionJS == nil) {
-        _injectionJS = [NSString stringWithFormat:@"%@%@",CLWebViewJavascriptBridge_js(),[[CLPluginManager sharedInstance]createJS]];
-    }
-    return _injectionJS;
+- (void)dealloc{
+    NSLog(@"%@ dealloc",[self class]);
 }
+
 @end
 
