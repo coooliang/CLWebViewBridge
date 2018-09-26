@@ -24,7 +24,22 @@
 
 /**
  创建注入的JS内容
- @return js
+ 
+
+ if (!window.plugins) {window.plugins = {};}
+ function InfoPlugin() {};
+ InfoPlugin.prototype.hello = function (successCallback, failureCallback, jsonString) {
+    js2native.exec(successCallback, failureCallback, "InfoPlugin", "hello", jsonString);
+ };//需要分号结尾
+ InfoPlugin.prototype.world = function (successCallback, failureCallback, jsonString) {
+    js2native.exec(successCallback, failureCallback, "InfoPlugin", "world", jsonString);
+ };
+ InfoPlugin.prototype.keyboard = function (successCallback, failureCallback, jsonString) {
+    js2native.exec(successCallback, failureCallback, "InfoPlugin", "keyboard", jsonString);
+ };
+ window.plugins.infoPlugin = new InfoPlugin();
+ 
+ @return js string
  */
 -(NSString *)createJS{
     NSArray *classArray = [self findSubClass:[CLBasePlugin class]];
