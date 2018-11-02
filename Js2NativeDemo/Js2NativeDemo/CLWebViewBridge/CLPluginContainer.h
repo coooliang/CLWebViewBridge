@@ -13,4 +13,6 @@
 
 -(void)add:(CLBasePlugin *)plugin;
 
+-(void)clean;
+
 @end

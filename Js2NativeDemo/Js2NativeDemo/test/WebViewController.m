@@ -53,6 +53,7 @@
 
 #pragma mark - 
 - (void)dealloc{
+    _interceptor = nil;
     NSLog(@"%@ dealloc",[self class]);
 }
 

@@ -102,6 +102,8 @@
 
 - (void)dealloc{
     NSLog(@"%@ dealloc",[self class]);
+    //clean
+    [_pluginContainer clean];
 }
 
 @end

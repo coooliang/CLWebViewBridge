@@ -76,4 +76,5 @@ function hello(){
     [self finish];//没有调用成功或者失败回调时，需要调用finish函数
 }
 
+3.查找所有文件获取继承类CLBasePlugin列表，当文件数量较多时可能存在问题，可以修改AppPlugin_JS文件避免此问题
 ```

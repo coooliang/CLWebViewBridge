@@ -46,11 +46,15 @@
         }
     }
 }
-- (void)dealloc{
+
+-(void)clean{
     if(_container){
         [_container removeAllObjects];
         _container = nil;
     }
+}
+- (void)dealloc{
+    [self clean];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:CLPluginContainer_Remove object:nil];
     
     NSLog(@"%@ dealloc",[self class]);
